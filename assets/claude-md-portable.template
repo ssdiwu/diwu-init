@@ -1,0 +1,81 @@
+# [项目名称]
+
+## 工作流规则
+
+本项目内嵌完整的 diwu 工作流规则，无需依赖全局配置。
+
+### 任务状态机与字段定义
+
+[RULES:core-states.md]
+
+### Session 工作流
+
+[RULES:core-workflow.md]
+
+### 异常处理
+
+[RULES:exceptions.md]
+
+### 格式模板
+
+[RULES:templates.md]
+
+### 文件布局
+
+[RULES:file-layout.md]
+
+---
+
+## 项目上下文
+
+[1-2 句话描述项目是什么、做什么]
+
+> 详细的任务定义见 task.json
+
+## 技术栈
+
+- 语言：[TypeScript / Python / ...]
+- 框架：[Next.js / FastAPI / ...]
+- 样式：[Tailwind CSS / ...]
+- 数据库：[PostgreSQL / Supabase / ...]
+
+## 常用命令
+
+```bash
+# 开发
+[npm run dev / python manage.py runserver / ...]
+
+# 构建
+[npm run build / ...]
+
+# 检查
+[npm run lint / ...]
+
+# 测试
+[npm run test / pytest / ...]
+```
+
+## 项目结构
+
+```
+/
+├── .claude/
+│   ├── CLAUDE.md          # 本文件
+│   ├── task.json          # 任务定义（source of truth）
+│   ├── recording.md       # 进度日志
+│   ├── checks/
+│   │   └── smoke.sh       # 基线验证脚本
+│   └── rules/
+│       └── constraints.md # 架构约束（可选）
+├── AGENTS.md              # 跨 AI 工具入口
+├── init.sh                # 环境初始化脚本
+└── [项目目录]/
+    ├── src/
+    └── ...
+```
+
+## 编码约定
+
+- [约定1：例如 TypeScript strict mode]
+- [约定2：例如 函数式组件 + hooks]
+- [约定3：例如 遵循项目既有命名风格]

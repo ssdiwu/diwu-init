@@ -1,0 +1,4 @@
+# Agent 配置
+
+全局规则: `~/.claude/CLAUDE.md`
+项目上下文: `./.claude/CLAUDE.md`

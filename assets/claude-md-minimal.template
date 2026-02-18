@@ -1,0 +1,70 @@
+# [项目名称]
+
+## 工作流
+遵循全局 `~/.claude/rules/` 中定义的 diwu 工作流:
+
+| 规则文件 | 职责 |
+|---------|------|
+| `core-states.md` | task.json 结构与字段定义、状态机与转移规则、blocked_by 规范 |
+| `core-workflow.md` | Session 流程、任务规划、实施、验证要求 |
+| `exceptions.md` | 阻塞、Change Request、超前实施、回退处理 |
+| `templates.md` | 所有格式模板、Git 规范、可调参数 |
+| `file-layout.md` | 所有文件路径定义、目录结构、归档触发条件 |
+
+## 项目上下文
+
+[1-2 句话描述项目是什么、做什么]
+
+> 详细的任务定义见 .claude/task.json
+
+## 技术栈
+
+- 语言：[TypeScript / Python / ...]
+- 框架：[Next.js / FastAPI / ...]
+- 样式：[Tailwind CSS / ...]
+- 数据库：[PostgreSQL / Supabase / ...]
+
+## 常用命令
+
+```bash
+# 开发
+[npm run dev / python manage.py runserver / ...]
+
+# 构建
+[npm run build / ...]
+
+# 检查
+[npm run lint / ...]
+
+# 测试
+[npm run test / pytest / ...]
+```
+
+## 项目结构
+
+```
+/
+├── .claude/
+│   ├── CLAUDE.md          # 本文件
+│   ├── task.json          # 任务定义（source of truth）
+│   ├── recording.md       # 进度日志
+│   ├── checks/
+│   │   └── smoke.sh       # 基线验证脚本
+│   └── rules/
+│       └── constraints.md # 架构约束（可选）
+├── AGENTS.md              # 跨 AI 工具入口
+├── init.sh                # 环境初始化脚本
+└── [项目目录]/
+    ├── src/
+    └── ...
+```
+
+## 编码约定
+
+- [约定1：例如 TypeScript strict mode]
+- [约定2：例如 函数式组件 + hooks]
+- [约定3：例如 遵循项目既有命名风格]
+
+## 项目特定约束（可选）
+
+(仅在需要覆盖全局规则时填写)
