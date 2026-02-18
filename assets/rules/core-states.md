@@ -120,7 +120,7 @@ Agent 标记 InReview 后，输出审查请求（格式见 templates.md），等
 ### 合法性检查
 
 Agent 修改 blocked_by 时必须验证：
-1. **引用存在**：blocked_by 中的 ID 必须存在于 task.json 或 task_archive.json
+1. **引用存在**：blocked_by 中的 ID 必须存在于 task.json 或 task_archive_YYYY-MM.json
 2. **无循环依赖**：不存在 A→B→C→A 的循环
 3. **非自引用**：任务不能阻塞自己
 4. **状态合理**：

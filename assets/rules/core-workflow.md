@@ -227,17 +227,16 @@ exit 0
 ### 自动归档触发条件
 
 **task.json 归档**（触发条件：Done/Cancelled 任务超过 20 个）：
-1. 将 Done/Cancelled 任务移到 task_archive.json
+1. 将 Done/Cancelled 任务移到 task_archive_YYYY-MM.json
 2. 保留 id 序列（新任务继续递增）
 3. 在 recording.md 记录归档操作
 
-**recording.md 归档**（触发条件：跨月首次启动 session）：
-1. 询问人工是否归档上月记录
-2. 确认后，移动到 recording_archive/YYYY-MM.md
-3. recording.md 开始新月记录
+**recording.md 归档**（触发条件：session 数超过 5 条）：
+1. 自动将最旧的 session 归档到 recording_archive/YYYY-MM-DD.md
+2. recording.md 保留最近 5 条 session
 
 **查找历史**：
 - 最近任务：查 task.json
-- 历史任务：查 task_archive.json（按 id 搜索）
+- 历史任务：查 task_archive_YYYY-MM.json（按 id 搜索）
 - 最近进度：查 recording.md
-- 历史进度：查 recording_archive/YYYY-MM.md
+- 历史进度：查 recording_archive/YYYY-MM-DD.md

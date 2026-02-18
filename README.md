@@ -132,8 +132,8 @@ flowchart TD
     UpdateRecording --> GitCommit[提交 Git]
     GitCommit --> CheckArchive{需要归档?}
 
-    CheckArchive -->|task.json<br/>Done>20| ArchiveTask[归档到 task_archive.json]
-    CheckArchive -->|recording.md<br/>跨月| ArchiveRecording[归档到 YYYY-MM.md]
+    CheckArchive -->|task.json<br/>Done>20| ArchiveTask[归档到 task_archive_YYYY-MM.json]
+    CheckArchive -->|recording.md<br/>session>5| ArchiveRecording[归档到 YYYY-MM-DD.md]
     CheckArchive -->|否| End([Session 结束])
 
     ArchiveTask --> End
@@ -320,7 +320,7 @@ diwu-init/
 **自动清理**: 当 blocked_by 中的任务变为 Done 时,Agent 自动移除该 ID
 
 **合法性检查**:
-1. 引用存在: blocked_by 中的 ID 必须存在于 task.json 或 task_archive.json
+1. 引用存在: blocked_by 中的 ID 必须存在于 task.json 或 task_archive_YYYY-MM.json
 2. 无循环依赖: 不存在 A→B→C→A 的循环
 3. 非自引用: 任务不能阻塞自己
 4. 状态合理:
