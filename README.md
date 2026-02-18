@@ -5,6 +5,9 @@
 [![GitHub License](https://img.shields.io/github/license/ssdiwu/diwu-init)](https://github.com/ssdiwu/diwu-init/blob/main/LICENSE)
 [![GitHub Issues](https://img.shields.io/github/issues/ssdiwu/diwu-init)](https://github.com/ssdiwu/diwu-init/issues)
 
+<img width="1024" height="572" alt="image" src="https://github.com/user-attachments/assets/d884cabb-eb8a-436a-add8-4cae29e2c7de" />
+
+
 一个用于初始化项目 Claude Code Agent 工作流结构的 Skill,自动创建符合规范的项目配置文件。
 
 ## 概述
