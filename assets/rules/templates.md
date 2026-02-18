@@ -77,7 +77,7 @@ Task#N: [任务名称]
 
 ```markdown
 ---
-## Session 2026-02-17 14:30
+## Session 2026-02-17 14:30:22
 
 ### 上下文恢复
 - 上次任务: Task#1 (InProgress)
@@ -110,7 +110,7 @@ Task#2: 密码重置功能
 
 ```markdown
 ---
-## Session 2026-02-18 10:00
+## Session 2026-02-18 10:00:35
 
 ### Task#2: 密码重置 → BLOCKED
 
@@ -142,6 +142,8 @@ Task#2: 密码重置功能
 
 **提交内容**: 代码变更 + `.claude/task.json` 更新 + `.claude/recording.md` 更新,同一个 commit。
 
+**force push 前置检查**: 执行 `git push --force` 前必须先 `git fetch origin` 并确认远端无未合并的变更（`git diff HEAD origin/<branch>`），有差异须先与用户确认再操作。
+
 ## 可调参数
 
 | 参数 | 默认值 | 说明 |
@@ -150,6 +152,6 @@ Task#2: 密码重置功能
 | 归档阈值 | 20 | task.json 中 Done/Cancelled 任务超过此数触发归档 |
 
 **归档机制执行步骤**:
-1. 将 Done/Cancelled 任务移到 task_archive.json
+1. 将 Done/Cancelled 任务移到 task_archive_YYYY-MM.json（当前月份）
 2. 保留 id 序列(新任务继续递增)
 3. 在 recording.md 记录归档操作
