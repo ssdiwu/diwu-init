@@ -151,7 +151,23 @@ Task#2: 密码重置功能
 | 超前上限 | 3 | 最多同时超前实施的任务数 |
 | 归档阈值 | 20 | task.json 中 Done/Cancelled 任务超过此数触发归档 |
 
-**归档机制执行步骤**:
-1. 将 Done/Cancelled 任务移到 task_archive_YYYY-MM.json（当前月份）
-2. 保留 id 序列(新任务继续递增)
-3. 在 recording.md 记录归档操作
+## 验证脚本模板
+
+**task_\<id\>_verify.sh**：
+```bash
+#!/bin/bash
+npm run build || exit 1
+npm test -- <test-file> || exit 1
+echo "Task#N 验证通过"
+exit 0
+```
+
+**smoke.sh**：
+```bash
+#!/bin/bash
+[ -d "node_modules" ] || npm install
+npm run build || exit 1
+npm run lint || exit 1
+echo "基线验证通过"
+exit 0
+```

@@ -35,25 +35,8 @@
 ### CR 编号规则
 CR 编号使用全局递增(跨任务连续),方便追踪。
 
-### 即时输出说明
-使用 CHANGE REQUEST 格式输出完整信息,包含:
-- 当前任务、状态
-- 已完成的工作
-- 发现的问题
-- 建议修改(详细的 acceptance 删除/新增/修改)
-- 影响评估
-- 等待批准说明
-
-完整格式见 templates.md。
-
-### Session 记录说明
-Agent 输出 CHANGE REQUEST 消息后,按 Change Request 记录格式追加到当前 session 的 recording.md。
-
-完整格式见 templates.md。
-
-## Change Request 格式
-
-完整格式见 templates.md。
+### 输出说明
+使用 CHANGE REQUEST 格式（见 templates.md）输出，输出后按 Change Request 记录格式追加到 recording.md。
 
 ## 阻塞恢复流程
 
@@ -79,7 +62,6 @@ Agent 输出 CHANGE REQUEST 消息后,按 Change Request 记录格式追加到�
 - **允许**: 最多超前 3 个任务
 - **任务状态**: 超前完成的任务标记为 **InReview**
 - **提交规则**: 超前任务完成时**立即创建 git commit**
-- **Commit 标记**: message 格式 `[Task#N] 任务描述 - completed (超前实施 X/3, blocked_by Task#M)`
 - **标记**: 在 recording.md 中记录 "Task#N (blocked_by Task#M, 超前 X/3, commit: abc123)"
 - **暂停**: 完成第 3 个超前任务后,输出 PENDING REVIEW,等待阻塞任务验收
 

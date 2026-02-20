@@ -10,8 +10,8 @@
       "description": "实现用户登录功能",
       "status": "InDraft",
       "acceptance": [
-        "输入正确用户名密码后跳转到首页",
-        "输入错误密码显示错误提示"
+        "Given 用户在登录页面且未登录 When 输入正确用户名密码并点击登录 Then 页面跳转到首页且 localStorage 存储 token",
+        "Given 用户在登录页面 When 输入错误密码并点击登录 Then 页面停留在登录页且显示'用户名或密码错误'"
       ],
       "steps": ["实现登录 API 调用", "添加错误处理逻辑"],
       "category": "functional",
@@ -28,7 +28,7 @@
 | `id` | 任务编号 | 数字 | 从 1 开始递增，永不复用 |
 | `description` | 任务描述 | 字符串 | 一句话描述任务内容 |
 | `status` | 任务状态 | 字符串 | 见下方状态定义章节 |
-| `acceptance` | 验收条件 | 数组 | 可验证的验收标准，逐条列出 |
+| `acceptance` | 验收条件 | 数组 | Given/When/Then 格式的验收场景，见下方 acceptance 格式规范 |
 | `steps` | 实施步骤 | 数组 | 实施过程的关键步骤 |
 | `category` | 任务分类 | 字符串 | 见下方任务分类说明 |
 | `blocked_by` | 前置任务 | 数组 | (可选) 见下方 blocked_by 规范章节 |
@@ -42,6 +42,15 @@
 | `bugfix` | 缺陷修复 | 修复已知 bug |
 | `refactor` | 重构 | 不改变行为的代码结构优化 |
 | `infra` | 基础设施 | 构建、部署、配置、脚本 |
+
+**acceptance 格式规范（Given/When/Then）**:
+
+`functional`、`ui`、`bugfix` 类任务**必须**使用 GWT 格式，`infra`、`refactor` 类任务**可选**。
+
+格式：`"Given [前置条件] When [用户动作] Then [预期结果]"`
+- 多个条件或结果用"且"连接：`"Then 页面跳转到首页且显示欢迎语"`
+- 单条 acceptance 中"且"超过 3 个时，应拆分为多条
+- `infra`/`refactor` 任务可使用简单描述：`"构建产物不超过 500KB"`
 
 ---
 
@@ -76,51 +85,21 @@
 
 **非法转移一律忽略**。例如 Done 状态下收到任何事件，保持 Done 不变。
 
-## 分层审查规则
-
-### 小幅度修改 → Agent 自审
-Agent 完成验证后可直接 InReview → Done，无需等待人工确认。
-
-### 大幅度修改 → 需要人工审查
-Agent 标记 InReview 后，输出审查请求（格式见 templates.md），等待人工确认后才能标 Done。
-
-### 修改幅度判定标准
-
-满足以下任一条件即为大幅度修改：
-- 修改了原有的 API 规范或字段定义（接口契约变更，应尽量复用原有约束）
-- 单次任务修改代码行数超过 2000 行（大规模重构场景）
-
-其余为小幅度修改，Agent 自审即可。
-
 ## blocked_by 规范
 
 ### 语义
 表示**阻塞关系**：前置任务未完成，当前任务无法开始。
 
 ### 修改权限
-
-| 状态 | 可修改 blocked_by? | 要求 |
-|------|------------------|------|
-| InDraft | ✅ 是 | 自由修改 |
-| InSpec | ✅ 是 | 需在 recording.md 记录原因 |
-| InProgress 及之后 | ❌ 否 | 只能通过 Change Request |
+InDraft 自由修改；InSpec 可改但需在 recording.md 记录原因；InProgress 及之后只能通过 Change Request。
 
 ### 何时使用
-
-✅ **应该使用**：
-- 前置任务状态为 InSpec/InProgress/InReview
-- 当前任务必须等待前置任务完成
-- 前置任务的输出是当前任务的输入
-- **超前实施**：前置任务为 InReview 时，可超前实施当前任务（详见 exceptions.md）
-
-❌ **不应该使用**：
-- 前置任务已 Done（应在任务描述中说明"基于 Task#N 实现"）
-- 仅仅是代码调用关系（不是阻塞关系）
+前置任务未完成（InSpec/InProgress/InReview）且当前任务依赖其输出时使用。前置任务已 Done 或仅是代码调用关系时不使用。
 
 ### 合法性检查
 
 Agent 修改 blocked_by 时必须验证：
-1. **引用存在**：blocked_by 中的 ID 必须存在于 task.json 或 task_archive_YYYY-MM.json
+1. **引用存在**：blocked_by 中的 ID 必须存在于 task.json 或 task_archive.json
 2. **无循环依赖**：不存在 A→B→C→A 的循环
 3. **非自引用**：任务不能阻塞自己
 4. **状态合理**：
