@@ -59,11 +59,11 @@ CR 编号使用全局递增(跨任务连续),方便追踪。
 当前任务的 blocked_by 中存在状态为 InReview 的任务时,可以超前实施。
 
 ### 超前规则
-- **允许**: 最多超前 3 个任务
+- **允许**: 最多超前 5 个任务
 - **任务状态**: 超前完成的任务标记为 **InReview**
 - **提交规则**: 超前任务完成时**立即创建 git commit**
-- **标记**: 在 recording.md 中记录 "Task#N (blocked_by Task#M, 超前 X/3, commit: abc123)"
-- **暂停**: 完成第 3 个超前任务后,输出 PENDING REVIEW,等待阻塞任务验收
+- **标记**: 在 recording.md 中记录 "Task#N (blocked_by Task#M, 超前 X/5, commit: abc123)"
+- **暂停**: 完成第 5 个超前任务后,输出 PENDING REVIEW,等待阻塞任务验收
 
 超前暂停格式见 templates.md。
 
